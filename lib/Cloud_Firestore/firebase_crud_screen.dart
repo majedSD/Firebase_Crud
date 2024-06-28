@@ -1,9 +1,9 @@
 import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:flutter/material.dart';
-import 'package:frebase_crud/world_cup_screen.dart';
-
-import 'Authentication/sign_in_screen.dart';
-import 'Model/model_class.dart';
+import 'package:frebase_crud/Cloud_Firestore/world_cup_screen.dart';
+import 'package:get/get.dart';
+import '../Authentication/sign_in_screen.dart';
+import '../Model/model_class.dart';
 
 class FirebaseCrudAppScreen extends StatefulWidget {
   const FirebaseCrudAppScreen({super.key});
@@ -48,17 +48,14 @@ class _FirebaseCrudAppScreenState extends State<FirebaseCrudAppScreen> {
                 Navigator.push(
                     context,
                     MaterialPageRoute(
-                        builder: (context) => const WorldCupScreen()));
-              },
-              icon: const Icon(Icons.arrow_forward)),
-          IconButton(
-              onPressed: () {
-                Navigator.push(
-                    context,
-                    MaterialPageRoute(
                         builder: (context) => const SignInScreen()));
               },
               icon: const Icon(Icons.sign_language)),
+          IconButton(
+            onPressed: (){
+              Get.to(const WorldCupScreen());
+            }, icon:const Icon(Icons.sports_football),
+          )
         ],
         backgroundColor: Colors.pinkAccent,
         foregroundColor: Colors.black,
@@ -200,6 +197,7 @@ class _FirebaseCrudAppScreenState extends State<FirebaseCrudAppScreen> {
               ],
             ),
           );
-        });
+        }
+        );
   }
 }

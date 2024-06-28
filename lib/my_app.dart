@@ -1,5 +1,5 @@
 import 'package:flutter/material.dart';
-import 'package:frebase_crud/firebase_crud_screen.dart';
+import 'package:frebase_crud/Cloud_Firestore/firebase_crud_screen.dart';
 import 'package:get/get.dart';
 
 class MyApp extends StatelessWidget {
@@ -11,6 +11,7 @@ class MyApp extends StatelessWidget {
       home: FirebaseCrudAppScreen(),
       title: 'Firebase Crud App',
       color: Colors.pink,
+      debugShowCheckedModeBanner: false,
     );
   }
 }
