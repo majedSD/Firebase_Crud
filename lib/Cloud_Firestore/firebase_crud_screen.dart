@@ -1,6 +1,9 @@
 import 'package:cloud_firestore/cloud_firestore.dart';
+import 'package:firebase_auth/firebase_auth.dart';
 import 'package:flutter/material.dart';
 import 'package:frebase_crud/Cloud_Firestore/world_cup_screen.dart';
+import 'package:frebase_crud/FirebaseMessaging/push_notification_screen.dart';
+import 'package:frebase_crud/Storage/firebase_storage.dart';
 import 'package:get/get.dart';
 import '../Authentication/sign_in_screen.dart';
 import '../Model/model_class.dart';
@@ -44,17 +47,19 @@ class _FirebaseCrudAppScreenState extends State<FirebaseCrudAppScreen> {
         title: const Center(child: Text('Student List CRUD')),
         actions: [
           IconButton(
-              onPressed: () {
-                Navigator.push(
-                    context,
-                    MaterialPageRoute(
-                        builder: (context) => const SignInScreen()));
-              },
-              icon: const Icon(Icons.sign_language)),
-          IconButton(
             onPressed: (){
               Get.to(const WorldCupScreen());
             }, icon:const Icon(Icons.sports_football),
+          ),
+          IconButton(
+            onPressed: (){
+              Get.to(const FirebaseStorageScreen());
+            }, icon:const Icon(Icons.sd_storage_outlined),
+          ),
+          IconButton(
+            onPressed: (){
+              Get.to(const FirebasePushNotification());
+            }, icon:const Icon(Icons.sd_storage_outlined),
           )
         ],
         backgroundColor: Colors.pinkAccent,
@@ -125,11 +130,30 @@ class _FirebaseCrudAppScreenState extends State<FirebaseCrudAppScreen> {
             }
             return const SizedBox();
           }),
-      floatingActionButton: FloatingActionButton(
-        onPressed: () {
-          ShowModalBottomSheet('0');
-        },
-        child: const Icon(Icons.add),
+      bottomNavigationBar:BottomNavigationBar(
+        items: [
+          BottomNavigationBarItem(
+              icon: InkWell(
+                  child: Icon(Icons.add),
+                onTap:(){
+                   ShowModalBottomSheet('0') ;
+                },
+              ),
+             label:'Add',
+              backgroundColor:Colors.grey,
+          ),
+          BottomNavigationBarItem(
+            icon:InkWell(
+                child: Icon(Icons.logout),
+              onTap: (){
+                  FirebaseAuth.instance.signOut();
+                  Get.to(SignInScreen());
+              },
+            ),
+            label:'Log out',
+            backgroundColor:Colors.grey,
+          )
+          ],
       ),
     );
   }

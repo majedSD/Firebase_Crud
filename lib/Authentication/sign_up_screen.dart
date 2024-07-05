@@ -1,5 +1,6 @@
 import 'package:firebase_auth/firebase_auth.dart';
 import 'package:flutter/material.dart';
+import 'package:frebase_crud/Authentication/sign_in_screen.dart';
 import 'package:get/get.dart';
 
 class SignUpScreen extends StatefulWidget {
@@ -16,7 +17,7 @@ class _SignUpScreenState extends State<SignUpScreen> {
 
   // ignore: non_constant_identifier_names
   Future<void> SignUpAuthentication() async {
-    firebaseAuth
+   await firebaseAuth
         .createUserWithEmailAndPassword(
             email: emailTEController.text, password: passwordTEController.text)
         .then((value) {
@@ -28,6 +29,7 @@ class _SignUpScreenState extends State<SignUpScreen> {
           duration: Duration(seconds: 2),
         ),
       );
+      Get.to(const SignInScreen());
     }).onError((error, stackTrace) {
       Get.showSnackbar(
         const GetSnackBar(

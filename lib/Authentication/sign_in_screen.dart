@@ -1,6 +1,7 @@
 import 'package:firebase_auth/firebase_auth.dart';
 import 'package:flutter/material.dart';
 import 'package:frebase_crud/Authentication/sign_up_screen.dart';
+import 'package:frebase_crud/Cloud_Firestore/firebase_crud_screen.dart';
 import 'package:get/get.dart';
 
 class SignInScreen extends StatefulWidget {
@@ -17,26 +18,30 @@ class _SignInScreenState extends State<SignInScreen> {
 
   // ignore: non_constant_identifier_names
   Future<void> SignInAuthentication() async {
-    firebaseAuth
+    await firebaseAuth
         .signInWithEmailAndPassword(
-            email: emailTEController.text, password: passwordTEController.text)
+        email: emailTEController.text, password: passwordTEController.text)
         .then((value) {
-      Get.showSnackbar(const GetSnackBar(
-        title: 'Sign In',
-        message: 'Successfully Sign in your app',
-        backgroundColor: Colors.green,
-        duration: Duration(seconds: 2),
-      ));
+      Get.showSnackbar(
+        const GetSnackBar(
+          title: 'Sign In',
+          message: 'Sign in successfull',
+          backgroundColor: Colors.green,
+          duration: Duration(seconds: 2),
+        ),
+      );
+      Get.to(const FirebaseCrudAppScreen());
     }).onError((error, stackTrace) {
-      Get.showSnackbar(const GetSnackBar(
-        title: 'failed',
-        message: 'Sign in failed,go to sign up',
-        backgroundColor: Colors.redAccent,
-        duration: Duration(seconds: 2),
-      ));
+      Get.showSnackbar(
+        const GetSnackBar(
+          title: 'failed',
+          message: 'Sign in failed',
+          backgroundColor: Colors.redAccent,
+          duration: Duration(seconds: 2),
+        ),
+      );
     });
   }
-
   final GlobalKey<FormState> _formKey = GlobalKey<FormState>();
 
   @override
@@ -104,5 +109,6 @@ class _SignInScreenState extends State<SignInScreen> {
     if (value!.isEmpty) {
       return 'Enter the valid value';
     }
+    return null;
   }
 }

@@ -1,5 +1,7 @@
 import 'package:cloud_firestore/cloud_firestore.dart';
+import 'package:firebase_auth/firebase_auth.dart';
 import 'package:flutter/material.dart';
+import 'package:frebase_crud/Authentication/sign_in_screen.dart';
 import 'package:frebase_crud/Cloud_Firestore/match_summary_screen.dart';
 import 'package:get/get.dart';
 
@@ -85,11 +87,30 @@ class _WorldCupScreenState extends State<WorldCupScreen> {
           return const SizedBox();
         },
       ),
-      floatingActionButton: FloatingActionButton(
-        onPressed: () {
-          ShowModalBottomSheet('0');
-        },
-        child: const Icon(Icons.add),
+      bottomNavigationBar:BottomNavigationBar(
+        items: [
+          BottomNavigationBarItem(
+            icon: InkWell(
+              child: Icon(Icons.add),
+              onTap:(){
+                ShowModalBottomSheet('0') ;
+              },
+            ),
+            label:'Add',
+            backgroundColor:Colors.grey,
+          ),
+          BottomNavigationBarItem(
+            icon:InkWell(
+              child: const Icon(Icons.logout),
+              onTap: (){
+                FirebaseAuth.instance.signOut();
+                Get.to(const SignInScreen());
+              },
+            ),
+            label:'Log out',
+            backgroundColor:Colors.grey,
+          )
+        ],
       ),
     );
   }
