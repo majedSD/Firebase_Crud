@@ -2,7 +2,7 @@ import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:firebase_auth/firebase_auth.dart';
 import 'package:flutter/material.dart';
 import 'package:frebase_crud/Cloud_Firestore/world_cup_screen.dart';
-import 'package:frebase_crud/FirebaseMessaging/push_notification_screen.dart';
+import 'package:frebase_crud/FirebaseMessaging/FirebaseMessageingService.dart';
 import 'package:frebase_crud/Storage/firebase_storage.dart';
 import 'package:get/get.dart';
 import '../Authentication/sign_in_screen.dart';
@@ -56,11 +56,6 @@ class _FirebaseCrudAppScreenState extends State<FirebaseCrudAppScreen> {
               Get.to(const FirebaseStorageScreen());
             }, icon:const Icon(Icons.sd_storage_outlined),
           ),
-          IconButton(
-            onPressed: (){
-              Get.to(const FirebasePushNotification());
-            }, icon:const Icon(Icons.sd_storage_outlined),
-          )
         ],
         backgroundColor: Colors.pinkAccent,
         foregroundColor: Colors.black,

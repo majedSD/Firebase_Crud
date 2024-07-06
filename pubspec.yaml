@@ -18,6 +18,9 @@ dependencies:
   firebase_messaging: ^15.0.2
   firebase_storage: ^12.1.0
   image_picker: ^1.1.2
+  #foreground a notification show korea nah ai package use korta hoi
+  flutter_local_notifications: ^17.2.1  #used for foreground messaging
+
 
 dev_dependencies:
   flutter_test:
