@@ -27,6 +27,7 @@ class FirebasemessageingService{
     FirebaseMessaging.onMessageOpenedApp.listen((message) {
       print(message.notification?.title);
       print(message.notification?.body);
+      //how to routing with the help of notification
       if(message.data['path']=='how to routing'){
         Get.to(const PushNotificationRouting());
       }

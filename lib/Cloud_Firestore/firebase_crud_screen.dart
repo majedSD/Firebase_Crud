@@ -2,7 +2,6 @@ import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:firebase_auth/firebase_auth.dart';
 import 'package:flutter/material.dart';
 import 'package:frebase_crud/Cloud_Firestore/world_cup_screen.dart';
-import 'package:frebase_crud/FirebaseMessaging/FirebaseMessageingService.dart';
 import 'package:frebase_crud/Storage/firebase_storage.dart';
 import 'package:get/get.dart';
 import '../Authentication/sign_in_screen.dart';
@@ -62,20 +61,20 @@ class _FirebaseCrudAppScreenState extends State<FirebaseCrudAppScreen> {
       ),
       body: StreamBuilder<QuerySnapshot>(
           stream: collectionReference.orderBy('roll').snapshots(),
-          builder: (context, AsyncSnapshot<QuerySnapshot> snapshot) {
-            if (snapshot.connectionState == ConnectionState.waiting) {
+          builder: (context, AsyncSnapshot<QuerySnapshot> snapshots) {
+            if (snapshots.connectionState == ConnectionState.waiting) {
               return const Center(
                 child: CircularProgressIndicator(),
               );
             }
-            if (snapshot.hasError) {
+            if (snapshots.hasError) {
               return Center(
-                child: Text(snapshot.error.toString()),
+                child: Text(snapshots.error.toString()),
               );
             }
-            if (snapshot.hasData) {
+            if (snapshots.hasData) {
               studentList.clear();
-              for (QueryDocumentSnapshot element in snapshot.data!.docs) {
+              for (QueryDocumentSnapshot element in snapshots.data!.docs) {
                 studentList.add(
                   Student(
                     element.get('name'),

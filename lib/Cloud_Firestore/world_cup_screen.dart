@@ -87,28 +87,28 @@ class _WorldCupScreenState extends State<WorldCupScreen> {
           return const SizedBox();
         },
       ),
-      bottomNavigationBar:BottomNavigationBar(
+      bottomNavigationBar: BottomNavigationBar(
         items: [
           BottomNavigationBarItem(
             icon: InkWell(
               child: Icon(Icons.add),
-              onTap:(){
-                ShowModalBottomSheet('0') ;
+              onTap: () {
+                ShowModalBottomSheet('0');
               },
             ),
-            label:'Add',
-            backgroundColor:Colors.grey,
+            label: 'Add',
+            backgroundColor: Colors.grey,
           ),
           BottomNavigationBarItem(
-            icon:InkWell(
+            icon: InkWell(
               child: const Icon(Icons.logout),
-              onTap: (){
+              onTap: () {
                 FirebaseAuth.instance.signOut();
                 Get.to(const SignInScreen());
               },
             ),
-            label:'Log out',
-            backgroundColor:Colors.grey,
+            label: 'Log out',
+            backgroundColor: Colors.grey,
           )
         ],
       ),

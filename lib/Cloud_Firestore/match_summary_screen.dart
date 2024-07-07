@@ -22,7 +22,7 @@ class _MatchSummaryScreenState extends State<MatchSummaryScreen> {
       ),
       body: Padding(
         padding: const EdgeInsets.all(8.0),
-        child: Container(
+        child: SizedBox(
           height: 150,
           width: double.infinity,
           child: Card(
@@ -30,19 +30,19 @@ class _MatchSummaryScreenState extends State<MatchSummaryScreen> {
               mainAxisAlignment: MainAxisAlignment.center,
               children: [
                 Text(widget.matchDetails.title,
-                    style: TextStyle(
+                    style: const TextStyle(
                         color: Colors.grey,
                         fontSize: 24,
                         fontWeight: FontWeight.bold)),
                 Text(widget.matchDetails.goal,
                     style:
-                        TextStyle(fontSize: 24, fontWeight: FontWeight.bold)),
+                        const TextStyle(fontSize: 24, fontWeight: FontWeight.bold)),
                 Text('Time:${widget.matchDetails.time}',
                     style:
-                        TextStyle(fontSize: 18, fontWeight: FontWeight.bold)),
+                        const TextStyle(fontSize: 18, fontWeight: FontWeight.bold)),
                 Text('Total Time:${widget.matchDetails.totalTime}',
                     style:
-                        TextStyle(fontSize: 18, fontWeight: FontWeight.bold)),
+                        const TextStyle(fontSize: 18, fontWeight: FontWeight.bold)),
               ],
             ),
           ),
